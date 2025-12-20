@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    image: monapp:dev
+    ports:
+      - "8080:80"
+    volumes:
+      - C:/Users/alexa/Projet_docker/public:/app/public
+
+  database:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: "change_me"
+    volumes:
+      - database_data:/var/lib/postgresql/data
+
+volumes:
+  database_data:
+
